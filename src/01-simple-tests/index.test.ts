@@ -6,8 +6,8 @@ describe('simpleCalculator tests', () => {
     expect(result).toBe(3);
   });
 
-  test('should substract two numbers', () => {
-    const result = simpleCalculator({a: 1, b: 2, action: Action.Substract});
+  test('should subtract two numbers', () => {
+    const result = simpleCalculator({a: 1, b: 2, action: Action.Subtract});
     expect(result).toBe(-1);
   });
 
