@@ -6,9 +6,9 @@ jest.mock('./index', () => {
   return {
     __esModule: true,
     ...originalModule,
-    mockOne: jest.fn(() => ''),
-    mockTwo: jest.fn(() => ''),
-    mockThree: jest.fn(() => ''),
+    mockOne: jest.fn(),
+    mockTwo: jest.fn(),
+    mockThree: jest.fn(),
   }
 });
 
