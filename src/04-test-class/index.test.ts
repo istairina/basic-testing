@@ -1,39 +1,48 @@
-import { BankAccount, InsufficientFundsError, SynchronizationFailedError, getBankAccount } from '.';
+import {
+  BankAccount,
+  InsufficientFundsError,
+  SynchronizationFailedError,
+  getBankAccount,
+} from '.';
 import lodash from 'lodash';
 
 describe('BankAccount', () => {
-
   let newBankAccount: BankAccount;
   const initialBalance = 200;
 
   beforeEach(() => {
     newBankAccount = getBankAccount(initialBalance);
-  })
+  });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   jest.unmock('lodash');
-  
+
   test('should create account with initial balance', () => {
     expect(newBankAccount.getBalance()).toEqual(initialBalance);
   });
 
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
     const moreThanBalance = initialBalance + 100;
-    expect(() => {newBankAccount.withdraw(moreThanBalance)}).toThrow(InsufficientFundsError);
+    expect(() => {
+      newBankAccount.withdraw(moreThanBalance);
+    }).toThrow(InsufficientFundsError);
   });
 
   test('should throw error when transferring more than balance', () => {
     const moreThanBalance = initialBalance + 100;
     const destBankAccount = getBankAccount(0);
-    expect(() => {newBankAccount.transfer(moreThanBalance, destBankAccount)}).toThrowError();
-
+    expect(() => {
+      newBankAccount.transfer(moreThanBalance, destBankAccount);
+    }).toThrowError();
   });
 
   test('should throw error when transferring to the same account', () => {
-    expect(() => {newBankAccount.transfer(100, newBankAccount)}).toThrowError();
+    expect(() => {
+      newBankAccount.transfer(100, newBankAccount);
+    }).toThrowError();
   });
 
   test('should deposit money', () => {
@@ -51,7 +60,9 @@ describe('BankAccount', () => {
   test('should transfer money', () => {
     const otherBankAccount = getBankAccount(initialBalance);
     newBankAccount.transfer(initialBalance, otherBankAccount);
-    expect(newBankAccount.getBalance()).toEqual(initialBalance - initialBalance);
+    expect(newBankAccount.getBalance()).toEqual(
+      initialBalance - initialBalance,
+    );
     expect(otherBankAccount.getBalance()).toEqual(initialBalance * 2);
   });
 

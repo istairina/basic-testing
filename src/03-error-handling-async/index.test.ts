@@ -1,4 +1,10 @@
-import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
+import {
+  throwError,
+  throwCustomError,
+  resolveValue,
+  MyAwesomeError,
+  rejectCustomError,
+} from './index';
 
 describe('resolveValue', () => {
   const input = 12;
@@ -11,7 +17,9 @@ describe('resolveValue', () => {
 describe('throwError', () => {
   const message = 'error here';
   test('should throw error with provided message', () => {
-    expect(() => {throwError(message)}).toThrow(message);
+    expect(() => {
+      throwError(message);
+    }).toThrow(message);
   });
 
   test('should throw error with default message if message is not provided', () => {

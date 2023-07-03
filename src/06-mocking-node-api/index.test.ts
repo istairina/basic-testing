@@ -3,8 +3,6 @@ import path from 'path';
 import fs from 'fs';
 import fsPromises from 'fs/promises';
 
-// import { Buffer } from 'buffer';
-
 describe('doStuffByTimeout', () => {
   beforeAll(() => {
     jest.useFakeTimers();
